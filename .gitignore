@@ -1,0 +1,27 @@
+# Personal data. This repo tracks the agentic workflow only.
+#
+# These directories hold the user's actual career evidence, identity, and
+# submitted applications. They are the input to the system, not part of it.
+# Anyone cloning this repo supplies their own.
+
+# Note: experiences/ is excluded by contents rather than as a directory, because
+# git cannot re-include a file underneath an excluded directory.
+experiences/*
+!experiences/_template.md
+
+profile/
+resumes/
+
+# The second repo that versions those three directories. See CLAUDE.md
+# §Versioning the career data.
+.git-private/
+
+# Point-in-time copies of experiences/ taken before a schema change. Same
+# personal data, same reason to stay untracked.
+.experiences-backup-*/
+
+# Build and OS noise
+*.pdf
+.DS_Store
+__pycache__/
+*.pyc
