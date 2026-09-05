@@ -62,23 +62,50 @@ candidate cannot control.
 experience. Two pages only for an advanced degree with publications, or a genuinely long
 senior career.
 
-At 10pt with 0.5in margins, one page is about 40–45 content lines. Approximate
-allocation for a new grad:
+**Fill it.** A page ending two thirds of the way down reads as a candidate with nothing
+to say, and it is the failure this system produces most often, because overflowing to
+page two is loud and stopping early is silent. Treat the budget below as a floor to
+reach, not a ceiling to stay under.
 
-| Section | Lines |
+At 10pt with 0.5in margins, the text block is 720pt, which is **43 to 44 rendered lines
+below the contact header**, plus the four section headings. Measured allocation for a
+new grad, from the resumes in `resumes/`:
+
+| Section | Rendered lines |
 | --- | --- |
-| Contact header | 3 |
-| Skills | 4–5 |
-| Education | 3–4 |
-| Experience | 16–22 |
-| Projects | 8–12 |
+| Contact header | 5 |
+| Skills | 4 |
+| Education | 4 |
+| Entry headers (5–7 of them) | 6–9 |
+| Bullets | 26–30 |
 
-Running long: tighten bullets to one line before cutting content. Most two-line bullets
-have a redundant clause.
+**In the unit you are actually writing: 12 to 13 bullets.** That is the number to aim
+for, and it is the single most useful figure here, because the draft is composed in
+bullets and the budget is spent in lines. The two are not the same. A bullet on this
+template runs 190 to 260 characters and renders as **two or three lines**, never one, so
+twelve bullets is roughly 28 lines. Bullets trade against entries: a resume carrying
+seven entries instead of five spends four more lines on headers and needs about two
+fewer bullets.
 
-Running short: this is a real signal, not a formatting problem. Add depth from the
-records rather than padding margins and font size. If genuinely short on material, say
-so and offer to capture more experience.
+Check the draft before presenting it:
+
+```bash
+python3 scripts/estimate-fill.py resumes/<slug>/resume.md
+```
+
+It predicts the rendered height from the markdown and reports any shortfall in bullets.
+Its resolution is about two lines, so it answers "is this materially short," not "is
+this one line short."
+
+**Running short is a real signal, not a formatting problem.** The fix is more evidence:
+go back to the records and pull something real that was cut. Never widen margins, never
+drop the font, and never pad an existing bullet with a clause that adds no claim. If the
+records genuinely cannot fill a page, say so and offer to run add-experience rather than
+shipping a padded one.
+
+**Running long:** cut a redundant clause so a three-line bullet becomes two, before
+cutting a bullet outright. Do not aim for one-line bullets. A one-line bullet is too
+short to carry action, method, and result, and a page built from them will not fill.
 
 ## Section order
 

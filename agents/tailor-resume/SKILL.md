@@ -37,13 +37,17 @@ rule files are long and most of each one does not apply to the step that cites i
 | 3 | Retrieve evidence | `experiences/INDEX.md`, then `## Claims` of matching records only · `profile/identity.md` §Career stage | — |
 | 4 | Select and map | `selection-rules.md` (all) | `match-analysis.md` (append), `analysis-notes.md` (append) |
 | 5 | Write the draft | `format-rules.md` §Non-negotiable ATS rules, §Page budget, §Section order (one variant), §Contact header, §Never do · `writing-rules.md` §The bullet formula, §Bullet order within an entry, §Recomposition, §Mechanics, §Truthfulness, plus one section rule per resume section present · `profile/identity.md` §Contact, §Logistics · `profile/skills.md` §Inventory, §Claimed but unevidenced · `profile/education.md` | `resume.md` |
-| 6 | Stop and present | — | — |
+| 6 | Stop and present | the `estimate-fill.py` result from step 5 | — |
 | 7 | Render | `render.md` (all) · `format-rules.md` §Whitespace and typography | `resume.typ`, `resume.pdf` |
 | 8 | Verify | already in context from step 7 | — |
 
 Two absences from step 5 are deliberate. `format-rules.md` §The two readers is restated in
 this file's opening, and §Whitespace and typography governs the Typst template, so it is
 only actionable at render time.
+
+Step 5 also **runs** `scripts/estimate-fill.py` against the draft it just wrote, and step
+6 reports what it said. That is the only page-level feedback available before the approval
+gate, because the gate shows markdown and markdown has no pages.
 
 ## Procedure
 
@@ -118,6 +122,17 @@ Pull contact details from `profile/identity.md` §Contact, relocation intent fro
 from `profile/education.md`. Check `profile/skills.md` §Claimed but unevidenced before
 listing anything — that section is what you are forbidden to claim.
 
+Then check the page before anyone sees it:
+
+```bash
+python3 scripts/estimate-fill.py resumes/<slug>/resume.md
+```
+
+Markdown has no pages, so without this the draft's most visible property is invisible
+until after it has been approved. Aim for the 12 to 13 bullets in §Page budget. If it
+reports short, go back to the records and pull real evidence that was cut, then re-run.
+Carry the result into step 6 whatever it says.
+
 ### 6. Stop and present
 
 Show the user the draft. Report, concisely:
@@ -126,6 +141,10 @@ Show the user the draft. Report, concisely:
 - Which job requirements you could not evidence
 - Any place you wanted a metric and did not have one
 - Anything you deliberately cut for space that they might want back
+- **Predicted page fill, from the `estimate-fill.py` run in step 5.** Report it even
+  when it is fine, and state the shortfall in bullets when it is not. The user is
+  approving markdown, so this number is the only signal they have about how the page
+  will look, and the alternative is that they find out from the PDF after approving.
 
 Then wait. Do not render.
 
